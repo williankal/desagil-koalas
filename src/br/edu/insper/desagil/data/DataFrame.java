@@ -20,6 +20,7 @@ public class DataFrame {
 	public double min(String label) {
 		validaLabel(label);
 		List<Double> values = this.columns.get(label);
+		vaziaLabel(label);
 		
 		double m = Double.POSITIVE_INFINITY;
 		for (double value: values) {
@@ -33,7 +34,7 @@ public class DataFrame {
 	public double max(String label) {
 		validaLabel(label);
 		List<Double> values = this.columns.get(label);
-
+		vaziaLabel(label);
 
 		double m = Double.NEGATIVE_INFINITY;
 		for (double value: values) {
@@ -46,9 +47,8 @@ public class DataFrame {
 
 	public double sum(String label) {
 		validaLabel(label);
-		
 		List<Double> values = this.columns.get(label);
-
+		vaziaLabel(label);
 
 		double s = 0;
 		for (double value: values) {
@@ -60,8 +60,7 @@ public class DataFrame {
 	public double avg(String label) {
 		validaLabel(label);
 		List<Double> values = this.columns.get(label);
-
-
+		vaziaLabel(label);
 
 		double s = 0;
 		for (double value: values) {
@@ -73,7 +72,7 @@ public class DataFrame {
 	public double var(String label) {
 		validaLabel(label);
 		List<Double> values = this.columns.get(label);
-
+		vaziaLabel(label);
 
 		double s;
 
@@ -93,7 +92,8 @@ public class DataFrame {
 	public double std(String label) {
 		validaLabel(label);
 		List<Double> values = this.columns.get(label);
-
+		vaziaLabel(label);
+		
 		double s, m;
 
 		s = 0;
@@ -114,9 +114,13 @@ public class DataFrame {
 	public void validaLabel(String label){
 		if (!this.columns.containsKey(label)) {
 			throw new DataFrameException("Column " + label + " is invalid!");
-		}
+		}}
+	
+
+	public void vaziaLabel(String label){
 		List<Double> values = this.columns.get(label);
 
+	
 		if (values.size() == 0) {
 			throw new DataFrameException("Column " + label + " is empty!");
 		}
